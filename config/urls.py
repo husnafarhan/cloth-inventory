@@ -19,11 +19,13 @@ from django.urls import path
 
 from django.contrib import admin
 from django.urls import path
-from products.views import dashboard, product_list, add_product
+from products.views import dashboard, product_list, add_product, edit_product, delete_product
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dashboard, name='dashboard'),
     path('products/', product_list, name='product_list'),
     path('products/add/', add_product, name='add_product'),
+path('products/edit/<int:id>/', edit_product, name='edit_product'),
+path('products/delete/<int:id>/', delete_product, name='delete_product'),
 ]

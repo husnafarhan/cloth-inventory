@@ -7,12 +7,15 @@
 
 <h1>Product List</h1>
 
+<a href="/products/add/">Add New Product</a>
+
 <table border="1">
     <tr>
         <th>Code</th>
         <th>Name</th>
         <th>Quantity</th>
         <th>Selling Price</th>
+        <th>Action</th>
     </tr>
 
     {% for product in products %}
@@ -21,6 +24,11 @@
         <td>{{ product.name }}</td>
         <td>{{ product.quantity }}</td>
         <td>{{ product.selling_price }}</td>
+     <td>
+    <a href="/products/edit/{{ product.id }}/">Edit</a>
+    |
+    <a href="/products/delete/{{ product.id }}/">Delete</a>
+</td>
     </tr>
     {% endfor %}
 
