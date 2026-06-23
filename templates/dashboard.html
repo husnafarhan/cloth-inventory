@@ -12,54 +12,81 @@
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">
-            Cloth Inventory System
+        <span class="navbar-brand">
+            Cloth Inventory Management System
         </span>
     </div>
 </nav>
 
-<div class="container mt-4">
+<div class="container mt-5">
 
-    <h2 class="mb-4">Dashboard</h2>
+    <h1 class="text-center text-primary mb-5">
+        Dashboard
+    </h1>
 
     <div class="row">
 
         <div class="col-md-4">
-            <div class="card text-center shadow">
-                <div class="card-body">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body text-center">
                     <h5>Total Products</h5>
-                <h2>{{ total_products }}</h2>
+                    <h1>{{ total_products }}</h1>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card text-center shadow">
-                <div class="card-body">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body text-center">
                     <h5>Total Stock</h5>
-                    <h2>0</h2>
+                    <h1>{{ total_stock }}</h1>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h5>Total Sales</h5>
-                    <h2>0</h2>
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body text-center">
+                    <h5>Inventory Value</h5>
+                    <h1>₹ {{ total_value }}</h1>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <div class="card mt-4 shadow">
-        <div class="card-header">
-            Recent Activities
+    <div class="card shadow mt-4">
+        <div class="card-header bg-dark text-white">
+            Quick Actions
         </div>
 
         <div class="card-body">
-            <p>Products, Inventory and Sales information will appear here.</p>
+
+            <a href="/products/" class="btn btn-primary">
+                View Products
+            </a>
+
+            <a href="/products/add/" class="btn btn-success">
+                Add Product
+            </a>
+
+        </div>
+    </div>
+
+    <div class="card shadow mt-4">
+        <div class="card-header bg-info text-white">
+            Project Information
+        </div>
+
+        <div class="card-body">
+            <p>
+                Welcome to Cloth Inventory Management System.
+            </p>
+
+            <p>
+                This system helps manage products, stock quantity,
+                selling price and inventory records.
+            </p>
         </div>
     </div>
 

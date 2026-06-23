@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from products.views import dashboard, product_list, add_product, edit_product, delete_product
@@ -29,3 +30,7 @@ urlpatterns = [
 path('products/edit/<int:id>/', edit_product, name='edit_product'),
 path('products/delete/<int:id>/', delete_product, name='delete_product'),
 ]
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)
