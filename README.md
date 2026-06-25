@@ -1,43 +1,20 @@
-# Cloth Inventory Management System
+🧥 Cloth Inventory System
+📌 Project Overview
 
-## Overview
+Cloth Inventory System is a web-based application developed using Django framework.
+It helps manage products, categories, brands, suppliers, and sales in a simple and efficient way.
 
-A web-based Cloth Inventory Management System developed using Python Django.
-
-## Features
-
-* Dashboard
-* Add Product
-* Edit Product
-* Delete Product
-* Product Search
-* Category Management
-* Brand Management
-* Supplier Management
-* Inventory Value Calculation
-
-## Technologies Used
-
-* Python
-* Django
-* SQLite
-* HTML
-* Bootstrap 5
-
-## Installation
-
-```bash
-git clone https://github.com/husnafarhan/cloth-inventory.git
-cd cloth-inventory
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-```
-
-## Future Enhancements
-
-* Product Image Upload
-* Sales Module
-* Stock Alerts
-* Reports and Analytics
-* User Authentication
+🚀 Features
+Product Management (Add, Edit, Delete)
+Category / Brand / Supplier Management
+Image Upload for Products
+Dashboard with overview
+User Authentication (Admin login)
+Sales module (in progress)
+Responsive UI (Bootstrap)
+🛠️ Tech Stack
+Python 🐍
+Django 🌐
+HTML, CSS, JavaScript
+Bootstrap 5
+SQLite (Database)
