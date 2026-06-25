@@ -1,96 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloth Inventory Dashboard</title>
+{% extends 'base.html' %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+{% block title %}
+Dashboard
+{% endblock %}
 
-<body class="bg-light">
+{% block content %}
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <span class="navbar-brand">
-            Cloth Inventory Management System
-        </span>
-    </div>
-</nav>
+<h1 class="text-center text-primary mb-5">
+  welcome home
+</h1>
 
-<div class="container mt-5">
+<div class="row">
 
-    <h1 class="text-center text-primary mb-5">
-        Dashboard
-    </h1>
-
-    <div class="row">
-
-        <div class="col-md-4">
-            <div class="card bg-primary text-white shadow">
-                <div class="card-body text-center">
-                    <h5>Total Products</h5>
-                    <h1>{{ total_products }}</h1>
-                </div>
+    <div class="col-md-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body text-center">
+                <h5>Total Products</h5>
+                <h1>{{ total_products }}</h1>
             </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card bg-success text-white shadow">
-                <div class="card-body text-center">
-                    <h5>Total Stock</h5>
-                    <h1>{{ total_stock }}</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card bg-danger text-white shadow">
-                <div class="card-body text-center">
-                    <h5>Inventory Value</h5>
-                    <h1>₹ {{ total_value }}</h1>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="card shadow mt-4">
-        <div class="card-header bg-dark text-white">
-            Quick Actions
-        </div>
-
-        <div class="card-body">
-
-            <a href="/products/" class="btn btn-primary">
-                View Products
-            </a>
-
-            <a href="/products/add/" class="btn btn-success">
-                Add Product
-            </a>
-
         </div>
     </div>
 
-    <div class="card shadow mt-4">
-        <div class="card-header bg-info text-white">
-            Project Information
+    <div class="col-md-4">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body text-center">
+                <h5>Total Stock</h5>
+                <h1>{{ total_stock }}</h1>
+            </div>
         </div>
+    </div>
 
-        <div class="card-body">
-            <p>
-                Welcome to Cloth Inventory Management System.
-            </p>
-
-            <p>
-                This system helps manage products, stock quantity,
-                selling price and inventory records.
-            </p>
+    <div class="col-md-4">
+        <div class="card bg-danger text-white shadow">
+            <div class="card-body text-center">
+                <h5>Inventory Value</h5>
+                <h1>₹ {{ total_value }}</h1>
+            </div>
         </div>
     </div>
 
 </div>
 
-</body>
-</html>
+<div class="card shadow mt-4">
+    <div class="card-header bg-dark text-white">
+        Quick Actions
+    </div>
+
+    <div class="card-body">
+
+        <a href="/products/" class="btn btn-primary">
+            View Products
+        </a>
+
+        <a href="/products/add/" class="btn btn-success">
+            Add Product
+        </a>
+
+    </div>
+</div>
+
+<div class="card shadow mt-4">
+    <div class="card-header bg-info text-white">
+        Project Information
+    </div>
+
+    <div class="card-body">
+        <p>
+            Welcome to Cloth Inventory Management System.
+        </p>
+
+        <p>
+            This system helps manage products, stock quantity,
+            selling price and inventory records.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

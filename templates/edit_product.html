@@ -1,18 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Product</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Edit Product</h1>
+{% block title %}
+Edit Product
+{% endblock %}
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
+{% block content %}
 
-    <button type="submit">Update Product</button>
-</form>
+<div class="container mt-4">
 
-</body>
-</html>
+    <div class="card shadow">
+
+        <div class="card-header bg-warning">
+            <h3 class="mb-0">Edit Product</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-warning">
+                    Update Product
+                </button>
+
+                <a href="/products/" class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

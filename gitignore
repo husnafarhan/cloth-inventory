@@ -1,6 +1,13 @@
-.idea/
+# Python cache
 __pycache__/
 *.pyc
+
+# Database
 db.sqlite3
-venv/
+
+# Media files (uploads)
 media/
+
+# Environment
+venv/
+.env
