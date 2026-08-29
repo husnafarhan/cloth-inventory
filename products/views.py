@@ -1,9 +1,16 @@
-from django.shortcuts import render, redirect
-from products.models import Product
+from django.shortcuts import render, redirect, get_object_or_404
+
+from rest_framework import viewsets
+
+from .models import Product
 from .forms import ProductForm
+from .serializers import ProductSerializer
 
 
+# -----------------------
 # Dashboard
+# -----------------------
+
 def dashboard(request):
 
     products = Product.objects.all()
@@ -17,53 +24,82 @@ def dashboard(request):
         for product in products
     )
 
+    recent_products = Product.objects.order_by('-id')[:5]
+
     context = {
         'total_products': total_products,
         'total_stock': total_stock,
         'total_value': total_value,
+        'recent_products': recent_products,
     }
 
     return render(request, 'dashboard.html', context)
 
 
+# -----------------------
 # Product List
+# -----------------------
+
 def product_list(request):
 
     query = request.GET.get('q')
 
     if query:
-        products = Product.objects.filter(name__icontains=query)
+        products = Product.objects.filter(
+            name__icontains=query
+        )
     else:
         products = Product.objects.all()
 
-    return render(request, 'product_list.html', {
-        'products': products
-    })
+    return render(
+        request,
+        'product_list.html',
+        {
+            'products': products
+        }
+    )
 
 
+# -----------------------
 # Add Product
+# -----------------------
+
 def add_product(request):
 
     if request.method == 'POST':
 
-        form = ProductForm(request.POST, request.FILES)
+        form = ProductForm(
+            request.POST,
+            request.FILES
+        )
 
         if form.is_valid():
             form.save()
             return redirect('product_list')
 
     else:
+
         form = ProductForm()
 
-    return render(request, 'add_product.html', {
-        'form': form
-    })
+    return render(
+        request,
+        'add_product.html',
+        {
+            'form': form
+        }
+    )
 
 
+# -----------------------
 # Edit Product
+# -----------------------
+
 def edit_product(request, id):
 
-    product = Product.objects.get(id=id)
+    product = get_object_or_404(
+        Product,
+        id=id
+    )
 
     if request.method == 'POST':
 
@@ -73,24 +109,49 @@ def edit_product(request, id):
             instance=product
         )
 
-
         if form.is_valid():
+
             form.save()
+
             return redirect('product_list')
 
     else:
-        form = ProductForm(instance=product)
 
-    return render(request, 'edit_product.html', {
-        'form': form
-    })
+        form = ProductForm(
+            instance=product
+        )
+
+    return render(
+        request,
+        'edit_product.html',
+        {
+            'form': form
+        }
+    )
 
 
+# -----------------------
 # Delete Product
+# -----------------------
+
 def delete_product(request, id):
 
-    product = Product.objects.get(id=id)
+    product = get_object_or_404(
+        Product,
+        id=id
+    )
 
     product.delete()
 
     return redirect('product_list')
+
+
+# -----------------------
+# REST API
+# -----------------------
+
+class ProductViewSet(viewsets.ModelViewSet):
+
+    queryset = Product.objects.all()
+
+    serializer_class = ProductSerializer
