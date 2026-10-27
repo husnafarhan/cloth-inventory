@@ -1,8 +1,12 @@
 
+
 import os
 from pathlib import Path
 
-# Build paths inside the project
+# --------------------------------------------------
+# Base directory
+# --------------------------------------------------
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -18,18 +22,31 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
-    "cloth-inventory-0jil.onrender.com",
     "localhost",
     "127.0.0.1",
 ]
 
+# Render hostname
+RENDER_EXTERNAL_HOSTNAME = os.environ.get(
+    "RENDER_EXTERNAL_HOSTNAME"
+)
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://cloth-inventory-0jil.onrender.com",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
+
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(
+        f"https://{RENDER_EXTERNAL_HOSTNAME}"
+    )
 
 
 # --------------------------------------------------
-# Application definition
+# Applications
 # --------------------------------------------------
 
 INSTALLED_APPS = [
@@ -95,6 +112,10 @@ TEMPLATES = [
 ]
 
 
+# --------------------------------------------------
+# WSGI
+# --------------------------------------------------
+
 WSGI_APPLICATION = "config.wsgi.application"
 
 
@@ -125,6 +146,12 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": (
             "django.contrib.auth.password_validation."
             "MinimumLengthValidator"
+        ),
+    },
+    {
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "CommonPasswordValidator"
         ),
     },
     {
@@ -189,7 +216,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 # --------------------------------------------------
-# Default primary key field type
+# Default primary key
 # --------------------------------------------------
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
